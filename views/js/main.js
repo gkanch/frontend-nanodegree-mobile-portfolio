@@ -16,6 +16,10 @@ Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
 
+// Global variables
+    var cols = 8;  //used for mover class, basicLeft = (i % cols) * s
+    var s = 256;   //used for mover class, basicLeft = (i % cols) * s
+
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -454,15 +458,22 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+  var scrollPos = document.body.scrollTop / 1250,
+  	phase0 = Math.sin(scrollPos + 0),
+  	phase1 = Math.sin(scrollPos + 1),
+  	phase2 = Math.sin(scrollPos + 2),
+  	phase3 = Math.sin(scrollPos + 3),
+  	phase4 = Math.sin(scrollPos + 4);
+  var phases = [phase0, phase1, phase2, phase3, phase4];
+  
+  var newLeft = [];
+  for (var j = 0; j < 40; j++) {
+	newLeft.push(phases[j] + 100 * (i % cols) * s);
+  }
+  
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-	
-	console.log("i = " + i);
-	console.log("items[i].basicLeft = " + items[i].basicLeft);
-	console.log("phase = " + phase);
-	console.log("items[i].basicLeft + 100 * phase = " + items[i].basicLeft + 100 * phase);
-	
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+	//items[i].style.left = items[i].basicLeft + 100 * phases[i%5] + 'px';
+	items[i].style.left = newLeft[i%40] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -480,9 +491,7 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 100; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -498,8 +507,3 @@ document.addEventListener('DOMContentLoaded', function() {
 // Look into "requestAnimationFrame"
 
 // canvas manipulation scripts
-document.addEventListener("load", "canvasApp", false);
-function canvasApp() {
-	console.log("running canvasApp");
-	alert("running canvasApp");
-}
