@@ -4,10 +4,13 @@
 2. Avoid redundant CSS ATF -- Update CSS media quaries, e.g. print css where they are applied only print rendering
 3. Reduce size of CSS files -- minimize the files by deleting spaces and linefeeds
 4. Avoid render and parser blocking -- Move locations of CSS and JS towards end of HTML file
+
 #### Measuring the score
 - Use [Google Developers insights]  (https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fgkanch.github.io%2Ffrontend-nanodegree-mobile-portfolio%2F&tab=mobile) to test the score
+
 ### pizza.html -- improve parsing speed and fps
 1. Iteratively optimize calculations in changePizzaSizes and updatePositions functions for improvement in fps.  For location specific detail, please see comments in main.js codes.
+
 #### Measuring the performance
 - Use Chrome developer tools: Output on console to see speed of resizing pizzas.
 - Use Chrome developer tools: Use bar chart in "Timeline", "frames View" while moving the vertical scroll bars, to read fps of the "pizza.html" page.
