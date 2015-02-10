@@ -1,3 +1,21 @@
+## Optimization Note - George K
+### index.html -- increase PageSpeed score
+1. Optimize images -- reduce image sizes and color depth to web standard
+2. Avoid redundant CSS ATF -- Update CSS media quaries, e.g. print css where they are applied only print rendering
+3. Reduce size of CSS files -- minimize the files by deleting spaces and linefeeds
+4. Avoid render and parser blocking -- Move locations of CSS and JS towards end of HTML file
+#### Measuring the score
+- Use [Google Developers insights]  (https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fgkanch.github.io%2Ffrontend-nanodegree-mobile-portfolio%2F&tab=mobile) to test the score
+### pizza.html -- improve parsing speed and fps
+1. Iteratively optimize calculations in changePizzaSizes and updatePositions functions for improvement in fps.  For location specific detail, please see comments in main.js codes.
+#### Measuring the performance
+- Use Chrome developer tools: Output on console to see speed of resizing pizzas.
+- Use Chrome developer tools: Use bar chart in "Timeline", "frames View" while moving the vertical scroll bars, to read fps of the "pizza.html" page.
+
+### References
+- [Optimizing encoding and transfer size of text-based assets — Web Fundamentals] (https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer)
+- [#perfmatters- 60fps layout and rendering - Chrome Dev Summit 2013 (Tom Wiltzius and Nat Duca) - YouTube] (https://www.youtube.com/watch?v=YyQYhhy1dZI)
+********************
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).

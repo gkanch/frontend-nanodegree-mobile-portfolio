@@ -396,15 +396,15 @@ var resizePizzas = function(size) {
     return dx;
   }
 
-  // ********************************************************************
+  // *** Performance basis ***
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
+	
+	// as all pizzas use single value, it is calculated before entering loop to update pizza widths
 	var randomPizzaContainerCount = document.querySelectorAll(".randomPizzaContainer").length;
 	var randomPizzaContainerArray = document.querySelectorAll(".randomPizzaContainer");
     var dx = determineDx(randomPizzaContainerArray[0], size);
 	var newWidth = (randomPizzaContainerArray[0].offsetWidth + dx) + 'px';
-	
-	console.log("newWidth = " + newWidth);
 	
     for (var i = 0; i < randomPizzaContainerCount; i++) {
       randomPizzaContainerArray[i].style.width = newWidth;
@@ -451,12 +451,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// ***************************************
+// *** Performance basis ***
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  // Generalize phases to 5 typical values
   var items = document.querySelectorAll('.mover');
   var scrollPos = document.body.scrollTop / 1250,
   	phase0 = Math.sin(scrollPos + 0),
@@ -466,13 +467,16 @@ function updatePositions() {
   	phase4 = Math.sin(scrollPos + 4);
   var phases = [phase0, phase1, phase2, phase3, phase4];
   
+  // Condense "left" values to permutations of 5 scrollPos and 8 basicLeft values
+  // note: moved cols & s to global, for use in 2 separate functions
   var newLeft = [];
   for (var j = 0; j < 40; j++) {
 	newLeft.push(phases[j] + 100 * (i % cols) * s);
   }
   
+  // retrieve left values from array, removing any calculations in the process of updating items' left values
   for (var i = 0; i < items.length; i++) {
-	//items[i].style.left = items[i].basicLeft + 100 * phases[i%5] + 'px';
+	//items[i].style.left = items[i].basicLeft + 100 * phases[i%5] + 'px';  //original formula
 	items[i].style.left = newLeft[i%40] + 'px';
   }
 
