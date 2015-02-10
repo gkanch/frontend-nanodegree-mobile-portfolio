@@ -15,7 +15,9 @@
 ### References
 - [Optimizing encoding and transfer size of text-based assets — Web Fundamentals] (https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer)
 - [#perfmatters- 60fps layout and rendering - Chrome Dev Summit 2013 (Tom Wiltzius and Nat Duca) - YouTube] (https://www.youtube.com/watch?v=YyQYhhy1dZI)
+
 ********************
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
